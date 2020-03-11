@@ -5,10 +5,16 @@ pipeline {
             args '-p 3000:3000'
         }
     }
+    environment {
+        CC = 'clang'
+    }
     stages {
         stage('Build') {
+            environment {
+                DEBUG_FLAGS = '-g'
+            }
             steps {
-                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                sh 'printenv'
             }
         }
     }
